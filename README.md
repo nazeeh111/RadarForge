@@ -4,7 +4,7 @@
 
 A 3D millimeter-wave radar dataset and MATLAB signal synthesizer, including camera imagery, depth maps, CAD assets, and radar heatmaps.
 
-This repository packages [HawkEye Dataset & Radar Data Synthesizer](https://github.com/JaydenG1019/HawkEye-Data-Code/tree/43d083789f1badca4b040fd8fc69de0e5c3c0f36), by **Junfeng Guan, Sohrab Madani, Suraj Jog, Saurabh Gupta and Haitham Hassanieh**, for the CVPR 2020 work Through Fog High-Resolution Imaging Using Millimeter Wave Radar. RadarForge adds the radar_forge entry-point alias, synthetic DSP checks and documentation. The original methods, datasets and reported research results belong to the cited source. [Source and additions](NOTICE.md).
+RadarForge adds the `radar_forge` entry point, synthetic signal-processing checks and setup documentation.
 
 ## Quick start
 
@@ -22,8 +22,10 @@ The signal tensor uses 400 fast-time samples and a 40 × 40 receiver array under
 
 ## Verification
 
-Run `run('tests/smoke_test.m')` from the repository root. See [verification details](docs/VERIFICATION.md) for the tested scope and unavailable checks. Computational source and bundled scientific assets are retained byte-for-byte; the added facade and documentation provide the new presentation.
+Run `run('tests/smoke_test.m')` from the repository root. See [verification details](docs/VERIFICATION.md) for the tested scope and unavailable checks. Computational source and bundled scientific assets are retained byte-for-byte.
 
-## License
+## Source and license
+
+Based on [HawkEye Dataset & Radar Data Synthesizer](https://github.com/JaydenG1019/HawkEye-Data-Code/tree/43d083789f1badca4b040fd8fc69de0e5c3c0f36) by **Junfeng Guan, Sohrab Madani, Suraj Jog, Saurabh Gupta and Haitham Hassanieh**. [Source and contribution details](NOTICE.md).
 
 Synthesizer/COPYRIGHT.txt retains the separate university notice. MIT in LICENSE-branding covers only new documentation, artwork, wrapper, and checks. Existing dataset and asset notices remain in place.
