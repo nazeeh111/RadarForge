@@ -4,7 +4,7 @@
 
 A 3D millimeter-wave radar dataset and MATLAB signal synthesizer, including camera imagery, depth maps, CAD assets, and radar heatmaps.
 
-> **Development history:** Developed locally using Git before publication. These projects were published to GitHub together, so similar upload dates do not indicate when development began.
+This repository packages [HawkEye Dataset & Radar Data Synthesizer](https://github.com/JaydenG1019/HawkEye-Data-Code/tree/43d083789f1badca4b040fd8fc69de0e5c3c0f36), by **Junfeng Guan, Sohrab Madani, Suraj Jog, Saurabh Gupta and Haitham Hassanieh**, for the CVPR 2020 work Through Fog High-Resolution Imaging Using Millimeter Wave Radar. RadarForge adds the radar_forge entry-point alias, synthetic DSP checks and documentation. The original methods, datasets and reported research results belong to the cited source. [Source and additions](NOTICE.md).
 
 ## Quick start
 
