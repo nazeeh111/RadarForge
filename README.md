@@ -6,6 +6,10 @@ A 3D millimeter-wave radar dataset and MATLAB signal synthesizer, including came
 
 RadarForge adds the `radar_forge` entry point, synthetic signal-processing checks and setup documentation.
 
+![Original HawkEye dataset examples: RGB camera, stereo depth, 3D radar point clouds and radar heatmaps](Dataset/documentation/dataset_showcase.JPG)
+
+*Retained [HawkEye dataset showcase](Dataset/documentation/dataset_showcase.JPG) from the [original research source](https://github.com/JaydenG1019/HawkEye-Data-Code/tree/43d083789f1badca4b040fd8fc69de0e5c3c0f36). These are source dataset examples, not newly generated or validated RadarForge results.*
+
 ## Quick start
 
 Open MATLAB in this repository, then use the branded entry point:
