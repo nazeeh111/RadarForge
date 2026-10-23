@@ -4,7 +4,7 @@ Tested locally with MATLAB R2026a Update 5 (26.1.0.3346908), using base MATLAB. 
 
 ## Passed
 
-The full configured radar DSP generated a 96 × 64 × 32 heatmap from a deterministic plane wave in a 400 × 40 × 40 input. The facade matched exactly, the result was finite/nonnegative/nonzero, and the expected range peak was recovered.
+The full configured radar DSP generated a 96 × 64 × 32 heatmap from a deterministic tone at one receiver in a 400 × 40 × 40 input. The facade matched exactly, the result was finite/nonnegative/nonzero, and the expected range peak was recovered.
 
 The 827 retained source and asset files in [SOURCE-MANIFEST.json](SOURCE-MANIFEST.json) are SHA-256 identical to the pre-rebrand snapshot. This establishes source and asset preservation, not full scientific replication. New wrappers and smoke checks are separate from those files. No computational core was rewritten.
 
@@ -20,6 +20,12 @@ The test uses only local synthetic inputs or bundled data. It does not acquire o
 
 ## Limits
 
-Full CAD-to-radar synthesis requires datasample from Statistics and Machine Learning Toolbox. Dataset-wide replication, measured hardware, and learned reconstruction are not checked. No trained cGAN implementation is included in this repository.
+Full CAD-to-radar synthesis calls `datasample` from Statistics and Machine Learning Toolbox and `awgn` from Communications Toolbox. Dataset-wide replication, measured hardware, and learned reconstruction are not checked. No trained cGAN implementation is included in this repository.
 
 The facade restores the MATLAB search path after a call. Legacy figure output and computational behavior are preserved. This release has new branding, documentation, artwork, and an entry-point facade; it does not claim a new underlying research algorithm.
+
+## Current DSP check, 2026-10-23
+
+The existing `tests/smoke_test.m` passed again at revision `3995466ebf265ea50f92e221d348957b68e7adcc` with MATLAB R2026a Update 5. This reconfirmed full configured output dimensions, exact facade parity, finite nonnegative nonzero output, and the expected range-bin peak. It did not validate arrival-angle accuracy or run the full CAD pipeline.
+
+Neither `datasample` nor `awgn` was available in this installation. A three-reflector signal-simulation fixture reached the `awgn` call and stopped there with an undefined-function error. No substitute noise model was used and no full-synthesis result is claimed.
