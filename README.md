@@ -1,10 +1,10 @@
 # RadarForge
 
-Explore a multimodal millimeter-wave radar dataset and its MATLAB scene synthesizer: camera images, stereo depth, CAD geometry, radar point clouds, and radar heatmaps. RadarForge preserves the [HawkEye research source](#source-and-license) and adds a small signal-processing entry point, synthetic checks, and setup guidance.
+Explore a multimodal millimeter-wave radar dataset and its MATLAB scene synthesizer: camera images, stereo depth, CAD geometry, radar point clouds, and radar heatmaps.
 
 ![Original HawkEye dataset examples: RGB camera, stereo depth, 3D radar point clouds and radar heatmaps](Dataset/documentation/dataset_showcase.JPG)
 
-*Retained [HawkEye dataset showcase](Dataset/documentation/dataset_showcase.JPG) from the original research source. These are source dataset examples, not newly generated or independently validated RadarForge results.*
+*Retained dataset examples. These are not newly generated or independently validated RadarForge results.*
 
 ## Try the signal-processing check
 
@@ -39,8 +39,8 @@ The CAD-to-radar workflow selects visible geometry, samples point reflectors, si
 
 The repository contains the dataset and synthesizer, **not the HawkEye cGAN training implementation or a trained neural reconstruction model**.
 
-## Source and license
+<a id="source-and-license"></a>
 
-Based on [HawkEye Dataset & Radar Data Synthesizer](https://github.com/JaydenG1019/HawkEye-Data-Code/tree/43d083789f1badca4b040fd8fc69de0e5c3c0f36) by **Junfeng Guan, Sohrab Madani, Suraj Jog, Saurabh Gupta and Haitham Hassanieh**. [Source and contribution details](NOTICE.md).
+## License
 
-[Synthesizer/COPYRIGHT.txt](Synthesizer/COPYRIGHT.txt) retains the separate university notice. [LICENSE-branding](LICENSE-branding) covers only new documentation, artwork, wrapper, and checks. Existing dataset and asset notices remain in place. Computational source and bundled scientific assets are retained unchanged.
+[Synthesizer/COPYRIGHT.txt](Synthesizer/COPYRIGHT.txt) retains the university notice. [LICENSE-branding](LICENSE-branding) covers new documentation, artwork, wrapper, and checks. Dataset and asset terms remain separate. [Source provenance](NOTICE.md).
