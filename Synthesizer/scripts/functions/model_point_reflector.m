@@ -103,6 +103,6 @@ function blb_cart_v = model_point_reflector(visible_cart_v,bbox,sampling)
             ptInBlb = find(dis_pt2blb < blb_size^3);
             blb_cart_v = [blb_cart_v;[visible_cart_v(ptInBlb,1),visible_cart_v(ptInBlb,2),visible_cart_v(ptInBlb,3)]];
         end
-        blb_cart_v = unique(blb_cart_v,'row');
+        blb_cart_v = unique(blb_cart_v,'rows');
     end
 end
