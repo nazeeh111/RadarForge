@@ -1,5 +1,12 @@
 # Verification
 
+The following preservation/build observations predate the2026-10-29 repair.
+They are historical receipts, not a claim that all original source hashes still
+match after the intentional amendments listed in SOURCE-AMENDMENTS.json.
+Current synthetic evidence and limitations are in the dated section below.
+
+## Historical preservation record
+
 Tested locally with MATLAB R2026a Update 5 (26.1.0.3346908), using base MATLAB. Only MATLAB, Simulink and System Composer were installed; additional research toolboxes were not assumed available.
 
 ## Passed
@@ -24,7 +31,7 @@ Full CAD-to-radar synthesis calls `datasample` from Statistics and Machine Learn
 
 The facade restores the MATLAB search path after a call. Legacy figure output and computational behavior are preserved. This release has new branding, documentation, artwork, and an entry-point facade; it does not claim a new underlying research algorithm.
 
-## Current DSP check, 2026-10-23
+## Historical DSP check, 2026-10-23
 
 The existing `tests/smoke_test.m` passed again at revision `3995466ebf265ea50f92e221d348957b68e7adcc` with MATLAB R2026a Update 5. This reconfirmed full configured output dimensions, exact facade parity, finite nonnegative nonzero output, and the expected range-bin peak. It did not validate arrival-angle accuracy or run the full CAD pipeline.
 
