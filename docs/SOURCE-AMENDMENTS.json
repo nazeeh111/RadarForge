@@ -1,0 +1,24 @@
+{
+  "base_commit": "333f756a72a03f4103d72c9a0780a18ac0ed198f",
+  "note": "Original SOURCE-MANIFEST.json remains a historical baseline; only these retained core sources intentionally changed. New examples/tests/docs are additions. No dataset or CAD asset changed.",
+  "amendments": [
+    {
+      "path": "Synthesizer/scripts/functions/model_point_reflector.m",
+      "base_sha256": "024df5684ad21d346a1014a3932b915ba38cd1e4e6ea585ad0bb577d8d1f54f9",
+      "amended_sha256": "6b2638909f7179808182459f6ae82907c520e1d3c75599d4fca536b8f2ade9c3",
+      "reason": "explicit optional base sampling, row count, empty output, portable rows option"
+    },
+    {
+      "path": "Synthesizer/scripts/functions/radar_dsp.m",
+      "base_sha256": "db665cf63ae9ab34b408946dee39af296d5d419af9a57ffdae3b696b917748db",
+      "amended_sha256": "cb827a7730eefbca21b316681bb3ebe3019667386f0b70bf4805451caa9fce24",
+      "reason": "portable nested summation preserving shape and numerical tolerance contract"
+    },
+    {
+      "path": "Synthesizer/scripts/functions/simulate_radar_signal.m",
+      "base_sha256": "81520b1162b11cc8f92c77f75702dd6e90613af9000526f708ac8cef0ab1c461",
+      "amended_sha256": "16d59c673301ea732f7b78f076fc39e0900eea0fcf0cb05f817700ead0d4b07c",
+      "reason": "row count, elementwise path loss, validation, optional noise-free mode and Gaussian fallback"
+    }
+  ]
+}

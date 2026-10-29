@@ -1,9 +1,21 @@
-function blb_cart_v = model_point_reflector(visible_cart_v,bbox)
+function blb_cart_v = model_point_reflector(visible_cart_v,bbox,sampling)
 % Model radar point reflectors in the scene
 % Input: 'visible_cart_v': point cloud of the visible body of the car (cartesian coordinates) 
 %        'bbox': bounding box of the car
 % Output: 'blb_cart_v': blobs of radar point reflectos
 
+    if nargin < 3, sampling = 'legacy'; end
+    if ~any(strcmp(sampling, {'legacy','base'}))
+        error('RadarForge:Sampling','sampling must be legacy or base');
+    end
+    blb_cart_v = zeros(0,3);
+    % base mode explicitly uses uniform sampling WITH replacement, matching
+    % datasample's default law. Legacy mode retains its toolbox RNG behavior.
+    if strcmp(sampling,'base')
+        sample = @(values,k) values(randi(numel(values),k,1));
+    else
+        sample = @(values,k) datasample(values,k);
+    end
     % local function find the distance from a point pt to a line determined by 2 points v1 and v2
     function d = point_to_line(pt, v1, v2)
           a = [v1 - v2,0];
@@ -13,7 +25,7 @@ function blb_cart_v = model_point_reflector(visible_cart_v,bbox)
     
     %% Blobs center
     blb_ctr_cart = []; % 
-    N_pt_car = length(visible_cart_v);
+    N_pt_car = size(visible_cart_v,1);
     pt_specular = zeros(N_pt_car,1);
 
 %     box_close = sqrt((bbox(2:4,1)-bbox(1,1)).^2+(bbox(2:4,2)-bbox(1,2)).^2);
@@ -61,19 +73,19 @@ function blb_cart_v = model_point_reflector(visible_cart_v,bbox)
     blb_ctr = find(pt_specular==0); % all corners are selected
     blb_ctr_cart = [];
     if ~isempty(blb_ctr)
-        blb_ctr_idx = datasample(blb_ctr,min(10,length(blb_ctr)));
+        blb_ctr_idx = sample(blb_ctr,min(10,length(blb_ctr)));
         blb_ctr_cart = [blb_ctr_cart;visible_cart_v(blb_ctr_idx,:)];
     end
 
     blb_ctr = find((pt_specular>0)&(pt_specular<15));
     if ~isempty(blb_ctr)
-        blb_ctr_idx = datasample(blb_ctr,min(20,length(blb_ctr)));
+        blb_ctr_idx = sample(blb_ctr,min(20,length(blb_ctr)));
         blb_ctr_cart = [blb_ctr_cart;visible_cart_v(blb_ctr_idx,:)];
     end
 
     blb_ctr = find((pt_specular>15)&(pt_specular<25));
     if ~isempty(blb_ctr)
-        blb_ctr_idx = datasample(blb_ctr,min(5,length(blb_ctr)));
+        blb_ctr_idx = sample(blb_ctr,min(5,length(blb_ctr)));
         blb_ctr_cart = [blb_ctr_cart;visible_cart_v(blb_ctr_idx,:)];
     end
 
@@ -91,6 +103,6 @@ function blb_cart_v = model_point_reflector(visible_cart_v,bbox)
             ptInBlb = find(dis_pt2blb < blb_size^3);
             blb_cart_v = [blb_cart_v;[visible_cart_v(ptInBlb,1),visible_cart_v(ptInBlb,2),visible_cart_v(ptInBlb,3)]];
         end
-        blb_cart_v = unique(blb_cart_v,'row');
+        blb_cart_v = unique(blb_cart_v,'rows');
     end
 end

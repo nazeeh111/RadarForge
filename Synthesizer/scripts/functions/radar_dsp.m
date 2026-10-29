@@ -18,7 +18,7 @@ function radar_heatmap = radar_dsp(signal_array)
         for kt = 1:N_theta
             Vec = exp(1j*(2*pi*(array_gap(1)*x_idx* cos(phi(kp)) * sin(theta(kt)) + array_gap(2)*z_idx*cos(theta(kt)))/lambda));
             VecR = repmat(Vec,N_rho,1);
-            radar_heatmap(:,kp,kt) = abs(sum(range_FFT_array.*VecR,[2,3])).^2;
+            radar_heatmap(:,kp,kt) = abs(sum(sum(range_FFT_array.*VecR,3),2)).^2;
         end
     end
 end
