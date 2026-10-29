@@ -38,10 +38,35 @@ assert(abs(mean(noise(:)))<0.03);
 assert(abs(mean(real(noise(:)).^2)-mean(imag(noise(:)).^2))<0.1);
 failed=false;try, simulate_radar_signal([0,0,0],Inf);catch,failed=true;end;assert(failed);
 output1=tempname;output2=tempname;
+% Strict independent spherical targets through BOTH synthesis and DSP.
+for point = {[0,6,0], [0.6,8,0.3]}
+    xyz=point{1};map=radar_dsp(simulate_radar_signal(xyz,Inf));
+    [~,index]=max(map(:));[r,p,t]=ind2sub(size(map),index);
+    expected_range=(norm(xyz-TX_pos)+norm(xyz))/2;
+    expected_phi=atan2(xyz(2),xyz(1))*180/pi;
+    expected_theta=acos(xyz(3)/norm(xyz))*180/pi;
+    assert(abs(rho(r)-expected_range)<=rho_res);
+    assert(abs(phi_deg(p)-expected_phi)<=phi_res_deg);
+    assert(abs(theta_deg(t)-expected_theta)<=theta_res_deg);
+end
+% Coherent multi-scatterer peaks need not lie on the nearest face. Require
+% independent bistatic geometric envelopes, including all RX element paths.
 a=scene_to_heatmap(output1,6,42);b=scene_to_heatmap(output2,8,43);
 assert(isequal(a.heatmap_size,[96,64,32]));
-assert(abs(a.peak_range_m-5.6)<0.3);
-assert(abs(b.peak_range_m-7.6)<0.3);
-assert(b.peak_range_m>a.peak_range_m+1.5);
+for output={output1,output2}
+    saved=load(fullfile(output{1},'scene.mat'),'reflectors','result');
+    points=saved.reflectors;
+    ranges=[];
+    for x=1:array_size(1)
+        for z=1:array_size(2)
+            rx=[array_x_idx(x)*array_gap(1),0,array_z_idx(z)*array_gap(2)];
+            ranges=[ranges;(sqrt(sum((points-TX_pos).^2,2))+sqrt(sum((points-rx).^2,2)))/2];
+        end
+    end
+    assert(saved.result.peak_range_m>=min(ranges)-rho_res);
+    assert(saved.result.peak_range_m<=max(ranges)+rho_res);
+end
+% The changed scenes have disjoint physically possible range intervals.
+assert(a.peak_range_m<6.6 && b.peak_range_m>7.5);
 % Keep outputs available for inspection rather than deleting newly computed data.
 fprintf('PASS synthesis independent scalar reference, AWGN power, scenes 6m/8m: %s %s\n',output1,output2);

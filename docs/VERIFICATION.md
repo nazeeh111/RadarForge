@@ -58,3 +58,13 @@ The optional legacy datasample path still requires Statistics Toolbox; base
 sampling has the same replacement distribution, not a promised identical RNG
 sequence. No measured radar validation, external CAD import, dataset license
 clearance or learned reconstruction is established.
+
+
+A retained failed trial assumed the brightest sampled box return must be its
+nearest face. The6m box instead peaked at6.375m (inside its geometry), while
+an8m changed scene peaked at7.625m. Sparse point scatterers and coherent phase
+sums do not establish an opaque nearest-surface model. The revised checks retain
+strict independent single-point bistatic range and two-angle predictions through
+full synthesis+DSP, exact plane-wave bins/magnitude, and require multi-scatterer
+peaks inside independent all-receiver geometric range envelopes. No measured
+accuracy or opaque-surface guarantee is inferred from a box peak.
