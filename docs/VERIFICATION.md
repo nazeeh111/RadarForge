@@ -75,3 +75,23 @@ strict independent single-point bistatic range and two-angle predictions through
 full synthesis+DSP, exact plane-wave bins/magnitude, and require multi-scatterer
 peaks inside independent all-receiver geometric range envelopes. No measured
 accuracy or opaque-surface guarantee is inferred from a box peak.
+
+## Later native MATLAB verification, 2026-10-29
+
+The earlier MathWorks service5201 failure was temporary. After a new bounded
+native test confirmed the service was available, the exact production source at
+`a23fa9081a49a8f1f34bb0082d721fd8d8dedbdd` passed both
+`tests/smoke_test.m` and `tests/synthesis_test.m` with MATLAB R2026a Update5
+(26.1.0.3346908), without sensors or extra research toolboxes. The scalar physics,
+noise, point-target, plane-wave and full changed-scene assertions all passed.
+
+The native6m/8m runs selected102/110reflectors and produced peaks5.625/7.625m,
+inside the independent bistatic range envelopes. The corresponding Octave runs
+selected99/94reflectors and peaked6.375/7.625m. The seeded base sampler's random
+sequence is runtime-dependent; cross-runtime byte identity is not promised.
+Observed native scene times were70.0s/59.2s during concurrent work. Those timings
+are not a controlled comparison with Octave and do not support a speedup claim.
+
+The native-runtime gate is therefore closed for these actual synthetic tests.
+Original CAD-corpus replication/licensing, legacy toolbox-specific RNG parity,
+measured radar and learned reconstruction remain separate unresolved gates.
